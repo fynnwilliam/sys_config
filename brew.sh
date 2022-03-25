@@ -13,7 +13,7 @@ _perform_next_steps() {
 
 
 # the next line implements a function for executing homebrew commands.
-_brew() { while read line; do brew $1 $line; done < $2; }
+_brew() { for line in $2; do brew $1 $line; done; }
 
 
 [ $(command -v brew) ] || _install_homebrew
