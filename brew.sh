@@ -25,7 +25,7 @@ _brew() { while read line; do brew $1 $line; done < $2; }
 
 _brew "install" "$(curl -fsSL https://raw.githubusercontent.com/fynnwilliam/sys_config/main/formulae)"
 _brew "tap" "$(curl -fsSL https://raw.githubusercontent.com/fynnwilliam/sys_config/main/taps)"
-_brew "install --cask" casks
+_brew "install --cask" "$(curl -fsSL https://raw.githubusercontent.com/fynnwilliam/sys_config/main/casks)"
 
 
 # configure vim to help in writting better git commit messages.
