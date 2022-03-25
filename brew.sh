@@ -23,7 +23,7 @@ _brew() { while read line; do brew $1 $line; done < $2; }
 [ $(uname) == "Linux" ] && _perform_next_steps '/home/linuxbrew/.linuxbrew/bin/brew shellenv'
 
 
-_brew "install" formulae
+_brew "install" "$(curl -fsSL https://raw.githubusercontent.com/fynnwilliam/sys_config/main/formulae)"
 _brew "tap" taps
 _brew "install --cask" casks
 
