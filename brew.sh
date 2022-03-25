@@ -24,7 +24,7 @@ _brew() { while read line; do brew $1 $line; done < $2; }
 
 
 _brew "install" "$(curl -fsSL https://raw.githubusercontent.com/fynnwilliam/sys_config/main/formulae)"
-_brew "tap" taps
+_brew "tap" "$(curl -fsSL https://raw.githubusercontent.com/fynnwilliam/sys_config/main/taps)"
 _brew "install --cask" casks
 
 
