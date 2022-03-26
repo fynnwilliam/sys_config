@@ -23,9 +23,11 @@ _brew() { for line in $2; do brew $1 $line; done; }
 [ $(uname) == "Linux" ] && _perform_next_steps '/home/linuxbrew/.linuxbrew/bin/brew shellenv'
 
 
-_brew "install" "$(curl -fsSL https://raw.githubusercontent.com/fynnwilliam/sys_config/main/formulae)"
-_brew "tap" "$(curl -fsSL https://raw.githubusercontent.com/fynnwilliam/sys_config/main/taps)"
-_brew "install --cask" "$(curl -fsSL https://raw.githubusercontent.com/fynnwilliam/sys_config/main/casks)"
+raw_user_content="https://raw.githubusercontent.com/fynnwilliam/sys_config/main"
+
+_brew "install" "$(curl -fsSL ${raw_user_content}/formulae)"
+_brew "tap" "$(curl -fsSL ${raw_user_content}/taps)"
+_brew "install --cask" "$(curl -fsSL ${raw_user_content}/casks)"
 
 
 # configure vim to help in writting better git commit messages.
