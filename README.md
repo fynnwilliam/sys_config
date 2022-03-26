@@ -6,4 +6,4 @@ Installs homebrew on your system and continues installing selected __homebrew pa
 
 _The script_ is excecuted by running the following command in your terminal
 
-`$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/fynnwilliam/sys_config/main/install.sh)"`
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/fynnwilliam/sys_config/main/install.sh)"`
