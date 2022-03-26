@@ -1,5 +1,5 @@
 # sys_config
-A script to automate setup, usually,  after a clean install
+A script to automate setup, usually, after a clean install or can be used to install multiple packages automatically.
 
 
 Installs homebrew on your system and continues installing selected __homebrew packages__.
