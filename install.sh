@@ -35,5 +35,5 @@ _brew "install --cask" "$(curl -fsSL ${raw_user_content}/casks)"
 echo "autocmd Filetype gitcommit setlocal spell textwidth=72" >> ~/.vimrc
 
 
-# the next line install oh-my-zsh.
+# the next line installs oh-my-zsh.
 # sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
