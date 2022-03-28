@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 _install_homebrew() {
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || exit 1
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
 _configure_path() {
@@ -22,7 +22,7 @@ _install_oh_my_zsh() {
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-[ $(command -v brew) ] || _install_homebrew
+[ $(command -v brew) ] || _install_homebrew || exit 1
 
 [ $(arch)  == "arm64" ] && _configure_path'/opt/homebrew/bin/brew shellenv' ||
 [ $(uname) == "Linux" ] && _configure_path'/home/linuxbrew/.linuxbrew/bin/brew shellenv'
