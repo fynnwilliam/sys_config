@@ -7,7 +7,9 @@ _install_homebrew() {
 
 # this block implements a function to configure $PATH for homebrew.
 _perform_next_steps() {
-  grep -qs 'eval "$('$1')"'  ~/.zprofile || echo 'eval "$('$1')"' >> ~/.zprofile
+  [ $SHELL == "/bin/zsh" ] && shell_profile=~/.zprofile || shell_profile=~/.profile
+  
+  grep -qs 'eval "$('$1')"'  $shell_profile || echo 'eval "$('$1')"' >> $shell_profile
   eval "$($1)"
 }
 
@@ -17,7 +19,6 @@ _brew() { for line in $2; do brew $1 $line; done; }
 
 
 [ $(command -v brew) ] || _install_homebrew
-
 
 [ $(arch)  == "arm64" ] && _perform_next_steps '/opt/homebrew/bin/brew shellenv' ||
 [ $(uname) == "Linux" ] && _perform_next_steps '/home/linuxbrew/.linuxbrew/bin/brew shellenv'
