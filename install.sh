@@ -24,8 +24,8 @@ _install_oh_my_zsh() {
 
 [ $(command -v brew) ] || _install_homebrew || exit 1
 
-[ $(arch)  == "arm64" ] && _configure_path'/opt/homebrew/bin/brew shellenv' ||
-[ $(uname) == "Linux" ] && _configure_path'/home/linuxbrew/.linuxbrew/bin/brew shellenv'
+[ $(arch)  == "arm64" ] && _configure_path '/opt/homebrew/bin/brew shellenv' ||
+[ $(uname) == "Linux" ] && _configure_path '/home/linuxbrew/.linuxbrew/bin/brew shellenv'
 
 raw_user_content="https://raw.githubusercontent.com/fynnwilliam/sys_config/main"
 
