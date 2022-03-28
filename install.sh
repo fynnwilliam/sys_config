@@ -18,6 +18,10 @@ _enable_better_commit_message() {
   echo "autocmd Filetype gitcommit setlocal spell textwidth=72" >> ~/.vimrc
 }
 
+_install_oh_my_zsh() {
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
 [ $(command -v brew) ] || _install_homebrew
 
 [ $(arch)  == "arm64" ] && _configure_path'/opt/homebrew/bin/brew shellenv' ||
@@ -29,7 +33,4 @@ _brew "install" "$(curl -fsSL ${raw_user_content}/formulae)"
 _brew "tap" "$(curl -fsSL ${raw_user_content}/taps)"
 _brew "install --cask" "$(curl -fsSL ${raw_user_content}/casks)"
 
-_enable_better_commit_message
-
-# the next line installs oh-my-zsh.
-# sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+_enable_better_commit_message # && _install_oh_my_zsh
