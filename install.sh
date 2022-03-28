@@ -5,8 +5,7 @@ _install_homebrew() {
 }
 
 
-# this block implements a function to configure $PATH for homebrew.
-_perform_next_steps() {
+_configure_path() {
   [ $SHELL == "/bin/zsh" ] && shell_profile=~/.zprofile || shell_profile=~/.profile
   
   grep -qs 'eval "$('$1')"'  $shell_profile || echo 'eval "$('$1')"' >> $shell_profile
@@ -20,8 +19,8 @@ _brew() { for line in $2; do brew $1 $line; done; }
 
 [ $(command -v brew) ] || _install_homebrew
 
-[ $(arch)  == "arm64" ] && _perform_next_steps '/opt/homebrew/bin/brew shellenv' ||
-[ $(uname) == "Linux" ] && _perform_next_steps '/home/linuxbrew/.linuxbrew/bin/brew shellenv'
+[ $(arch)  == "arm64" ] && _configure_path'/opt/homebrew/bin/brew shellenv' ||
+[ $(uname) == "Linux" ] && _configure_path'/home/linuxbrew/.linuxbrew/bin/brew shellenv'
 
 
 raw_user_content="https://raw.githubusercontent.com/fynnwilliam/sys_config/main"
