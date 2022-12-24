@@ -10,7 +10,7 @@ _configure_path() {
 }
 
 # the next line implements a function for executing homebrew commands.
-_brew() { for line in $2; do brew $1 $line; done; }
+_brew() { brew $1 $2; }
 
 _enable_better_commit_message() {
   echo "autocmd Filetype gitcommit setlocal spell textwidth=72" >> ~/.vimrc
