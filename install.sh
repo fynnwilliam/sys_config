@@ -7,8 +7,8 @@ echo "$(curl -fsSL ${raw_user_content}/install_apis)" > /tmp/install_apis &&
 
 [ $(command -v brew) ] || _install_homebrew || exit 1
 
-[ $(arch)  == "arm64" ] && _configure_path '/opt/homebrew/bin/brew shellenv' ||
-[ $(uname) == "Linux" ] && _configure_path '/home/linuxbrew/.linuxbrew/bin/brew shellenv'
+([ $(arch)  == "arm64" ] && _configure_path '/opt/homebrew/bin/brew shellenv') ||
+([ $(uname) == "Linux" ] && _configure_path '/home/linuxbrew/.linuxbrew/bin/brew shellenv')
 
 _brew "install" "$(curl -fsSL ${raw_user_content}/formulae)"
 _brew "tap" "$(curl -fsSL ${raw_user_content}/taps)"
