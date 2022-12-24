@@ -1,33 +1,14 @@
 #!/usr/bin/env bash
 
-_install_homebrew() {
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-}
+raw_user_content="https://raw.githubusercontent.com/fynnwilliam/sys_config/main"
 
-_configure_path() {
-  [ $SHELL == "/bin/zsh" ] && shell_profile=~/.zprofile || shell_profile=~/.profile
-  
-  grep -qs 'eval "$('$1')"'  $shell_profile || echo 'eval "$('$1')"' >> $shell_profile
-  eval "$($1)"
-}
-
-# the next line implements a function for executing homebrew commands.
-_brew() { for line in $2; do brew $1 $line; done; }
-
-_enable_better_commit_message() {
-  echo "autocmd Filetype gitcommit setlocal spell textwidth=72" >> ~/.vimrc
-}
-
-_install_oh_my_zsh() {
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-}
+echo "$(curl -fsSL ${raw_user_content}/install_apis)" > /tmp/install_apis &&
+	source /tmp/install_apis
 
 [ $(command -v brew) ] || _install_homebrew || exit 1
 
 [ $(arch)  == "arm64" ] && _configure_path '/opt/homebrew/bin/brew shellenv' ||
 [ $(uname) == "Linux" ] && _configure_path '/home/linuxbrew/.linuxbrew/bin/brew shellenv'
-
-raw_user_content="https://raw.githubusercontent.com/fynnwilliam/sys_config/main"
 
 _brew "install" "$(curl -fsSL ${raw_user_content}/formulae)"
 _brew "tap" "$(curl -fsSL ${raw_user_content}/taps)"

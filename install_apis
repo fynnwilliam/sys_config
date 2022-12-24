@@ -1,0 +1,21 @@
+_install_homebrew() {
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+_configure_path() {
+  [ $SHELL == "/bin/zsh" ] && shell_profile=~/.zprofile || shell_profile=~/.profile
+  
+  grep -qs 'eval "$('$1')"'  $shell_profile || echo 'eval "$('$1')"' >> $shell_profile
+  eval "$($1)"
+}
+
+# the next line implements a function for executing homebrew commands.
+_brew() { for line in $2; do brew $1 $line; done; }
+
+_enable_better_commit_message() {
+  echo "autocmd Filetype gitcommit setlocal spell textwidth=72" >> ~/.vimrc
+}
+
+_install_oh_my_zsh() {
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
