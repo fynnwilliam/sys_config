@@ -2,11 +2,20 @@ _install_homebrew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
-_configure_path() {
+_path() {
   [ $SHELL == "/bin/zsh" ] && shell_profile=~/.zprofile || shell_profile=~/.profile
   
   grep -qs 'eval "$('$1')"'  $shell_profile || echo 'eval "$('$1')"' >> $shell_profile
   eval "$($1)"
+}
+
+_configure_path() {
+  ([ $(arch)  == "arm64" ] && _path '/opt/homebrew/bin/brew shellenv') ||
+  ([ $(uname) == "Linux" ] && _path '/home/linuxbrew/.linuxbrew/bin/brew shellenv')
+}
+
+_install_homebrew_and_configure_path() {
+  _install_homebrew && _configure_path
 }
 
 # the next line implements a function for executing homebrew commands.
